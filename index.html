@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <title>Artist Promo Page - Signup</title>
+    
+    <style>
+        /* --- CORE STYLES --- */
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #27ae60; /* Green similar to HearNow */
+            --text-color: #333;
+            --bg-overlay: rgba(0, 0, 0, 0.7);
+        }
+
+        body {
+            font-family: 'PT Sans', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #222;
+            /* CHANGE THIS: Local Background Image */
+            background-image: url('images/background.jpg'); 
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* --- CONTAINER & MODAL --- */
+        .hnsignup__wrapper {
+            background: white;
+            width: 100%;
+            max-width: 500px;
+            border-radius: 8px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+            overflow: hidden;
+            position: relative;
+        }
+
+        .hnsignup__header {
+            background: #f4f4f4;
+            padding: 20px;
+            text-align: center;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .local-logo {
+            max-height: 50px;
+            width: auto;
+        }
+
+        /* --- FORM STEPS --- */
+        fieldset {
+            border: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .hnsignup__panel {
+            padding: 30px;
+            display: none; /* Hidden by default */
+            animation: fadeIn 0.3s ease-in-out;
+        }
+
+        .hnsignup__panel.active {
+            display: block; /* Show active panel */
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .hnsignup__legend {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            font-weight: bold;
+            display: block;
+        }
+
+        .hnsignup__instructions {
+            color: #666;
+            font-size: 0.95rem;
+            margin-bottom: 20px;
+            line-height: 1.4;
+        }
+
+        /* --- INPUTS --- */
+        .hnsignup__formlabel {
+            font-weight: bold;
+            font-size: 0.9rem;
+            display: block;
+            margin-bottom: 5px;
+            margin-top: 10px;
+        }
+
+        .hnsignup__forminput {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box; /* Fix padding issues */
+            font-size: 1rem;
+        }
+
+        .hnsignup__subdomcombowrapper {
+            display: flex;
+            align-items: center;
+        }
+        
+        .hnsignup__subdomtld {
+            padding-left: 10px;
+            color: #777;
+            font-weight: bold;
+        }
+
+        /* --- PLAN SELECTION --- */
+        .hnsignup__pay-plan-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .hnsignup__pay-plan-item {
+            margin-bottom: 10px;
+        }
+
+        .hnsignup__pricebox {
+            display: flex;
+            align-items: center;
+            border: 1px solid #ddd;
+            padding: 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .hnsignup__pricebox:hover {
+            border-color: var(--accent-color);
+            background: #f9fff9;
+        }
+
+        .hnsignup__pricebox input[type="radio"] {
+            margin-right: 15px;
+        }
+
+        .hnsignup__plan-price {
+            margin-left: auto;
+            font-weight: bold;
+            color: var(--accent-color);
+        }
+
+        /* --- BUTTONS --- */
+        .hnsignup__buttonholder {
+            margin-top: 25px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .hnsignup__navbutton {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .hnsignup__navbutton--prev {
+            background-color: #ddd;
+            color: #333;
+        }
+
+        .hnsignup__navbutton--next, .hnsignup__navbutton--submit {
+            background-color: var(--accent-color);
+            color: white;
+        }
+
+        .hnsignup__navbutton--next:hover {
+            background-color: #219150;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            position: fixed;
+            bottom: 10px;
+            width: 100%;
+            text-align: center;
+            color: white;
+            font-size: 0.8rem;
+            text-shadow: 1px 1px 2px black;
+        }
+        
+        footer a { color: #ddd; text-decoration: none; }
+
+        /* --- HELPER --- */
+        .row { display: flex; gap: 10px; }
+        .col { flex: 1; }
+    </style>
+</head>
+
+<body>
+
+    <div class="hnsignup__wrapper">
+        <div class="hnsignup__header">
+            <img src="images/logo.png" alt="Local Logo" class="local-logo" onerror="this.style.display='none'; document.getElementById('logo-text').style.display='block'">
+            <h2 id="logo-text" style="display:none; margin:0;">Music Promo Page</h2>
+        </div>
+
+        <form id="signup_form" onsubmit="return false;">
+            
+            <fieldset class="hnsignup__panel active" id="step-1">
+                <legend class="hnsignup__legend">Create your Account</legend>
+                <div class="hnsignup__panel-content">
+                    <p class="hnsignup__instructions">Enter your email address and choose a password.</p>
+                    
+                    <label class="hnsignup__formlabel" for="email">Your email address</label>
+                    <input id="email" placeholder="you@example.com" class="hnsignup__forminput" type="email">
+                    
+                    <label class="hnsignup__formlabel" for="pass">Choose a password</label>
+                    <input placeholder="Password" id="pass" class="hnsignup__forminput" type="password">
+                    
+                    <label class="hnsignup__formlabel" for="pass2">Confirm password</label>
+                    <input placeholder="Re-type Password" id="pass2" class="hnsignup__forminput" type="password">
+                </div>
+                <div class="hnsignup__buttonholder">
+                    <button class="hnsignup__navbutton hnsignup__navbutton--prev" disabled style="opacity:0.5">Cancel</button>
+                    <button class="hnsignup__navbutton hnsignup__navbutton--next" onclick="nextStep(2)">Create account</button>
+                </div>
+            </fieldset>
+
+            <fieldset class="hnsignup__panel" id="step-2">
+                <legend class="hnsignup__legend">Choose your URL</legend>
+                <div class="hnsignup__panel-content">
+                    <p class="hnsignup__instructions">Your artist or band name is the best bet.</p>
+                    
+                    <label class="hnsignup__formlabel">Site Name</label>
+                    <div class="hnsignup__subdomcombowrapper">
+                        <input id="subdomain" placeholder="artistname" class="hnsignup__forminput" type="text">
+                        <div class="hnsignup__subdomtld">.yoursite.com</div>
+                    </div>
+                </div>
+                <div class="hnsignup__buttonholder">
+                    <button class="hnsignup__navbutton hnsignup__navbutton--prev" onclick="nextStep(1)">Previous</button>
+                    <button class="hnsignup__navbutton hnsignup__navbutton--next" onclick="nextStep(3)">Next</button>
+                </div>
+            </fieldset>
+
+            <fieldset class="hnsignup__panel" id="step-3">
+                <legend class="hnsignup__legend">Choose a Plan</legend>
+                <div class="hnsignup__panel-content">
+                    <ul class="hnsignup__pay-plan-list">
+                        <li class="hnsignup__pay-plan-item">
+                            <label class="hnsignup__pricebox">
+                                <input type="radio" name="plan" checked>
+                                <span class="hnsignup__plan-name">Monthly Subscription</span>
+                                <span class="hnsignup__plan-price">$2.95/mo</span>
+                            </label>
+                        </li>
+                        <li class="hnsignup__pay-plan-item">
+                            <label class="hnsignup__pricebox">
+                                <input type="radio" name="plan">
+                                <span class="hnsignup__plan-name">Yearly Subscription</span>
+                                <span class="hnsignup__plan-price">$24/yr</span>
+                            </label>
+                        </li>
+                    </ul>
+                </div>
+                <div class="hnsignup__buttonholder">
+                    <button class="hnsignup__navbutton hnsignup__navbutton--prev" onclick="nextStep(2)">Previous</button>
+                    <button class="hnsignup__navbutton hnsignup__navbutton--next" onclick="nextStep(4)">Next</button>
+                </div>
+            </fieldset>
+
+            <fieldset class="hnsignup__panel" id="step-4">
+                <legend class="hnsignup__legend">Checkout</legend>
+                <div class="hnsignup__panel-content">
+                    <p class="hnsignup__instructions">Enter payment details (This is a local demo, no charge will be made).</p>
+                    
+                    <div class="row">
+                        <div class="col">
+                            <label class="hnsignup__formlabel">First Name</label>
+                            <input class="hnsignup__forminput" type="text">
+                        </div>
+                        <div class="col">
+                            <label class="hnsignup__formlabel">Last Name</label>
+                            <input class="hnsignup__forminput" type="text">
+                        </div>
+                    </div>
+
+                    <label class="hnsignup__formlabel">Card Number</label>
+                    <input class="hnsignup__forminput" type="text" placeholder="0000 0000 0000 0000">
+
+                    <div class="row">
+                        <div class="col">
+                            <label class="hnsignup__formlabel">Exp Date</label>
+                            <input class="hnsignup__forminput" type="text" placeholder="MM/YY">
+                        </div>
+                        <div class="col">
+                            <label class="hnsignup__formlabel">CVV</label>
+                            <input class="hnsignup__forminput" type="text" placeholder="123">
+                        </div>
+                         <div class="col">
+                            <label class="hnsignup__formlabel">Zip</label>
+                            <input class="hnsignup__forminput" type="text" placeholder="Zip">
+                        </div>
+                    </div>
+                </div>
+                <div class="hnsignup__buttonholder">
+                    <button class="hnsignup__navbutton hnsignup__navbutton--prev" onclick="nextStep(3)">Previous</button>
+                    <button class="hnsignup__navbutton hnsignup__navbutton--submit" onclick="alert('Demo Complete!')">Create my site!</button>
+                </div>
+            </fieldset>
+
+        </form>
+    </div>
+
+    <footer>
+        <p>Local Template Preview &copy; 2025</p>
+    </footer>
+
+    <script>
+        function nextStep(stepNumber) {
+            // Hide all steps
+            const panels = document.querySelectorAll('.hnsignup__panel');
+            panels.forEach(panel => panel.classList.remove('active'));
+
+            // Show requested step
+            const target = document.getElementById('step-' + stepNumber);
+            if(target) {
+                target.classList.add('active');
+            }
+        }
+    </script>
+
+</body>
+</html>
