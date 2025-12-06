@@ -1,340 +1,306 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-    <title>Artist Promo Page - Signup</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Timi Bina by Chrisma Abigail</title>
     
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Kalam:wght@300;400;700&display=swap" rel="stylesheet">
+
     <style>
-        /* --- CORE STYLES --- */
-        :root {
-            --primary-color: #2c3e50;
-            --accent-color: #27ae60; /* Green similar to HearNow */
-            --text-color: #333;
-            --bg-overlay: rgba(0, 0, 0, 0.7);
+        .kalam-light {
+        font-family: "Kalam", cursive;
+        font-weight: 300;
+        font-style: normal;
         }
 
-        body {
-            font-family: 'PT Sans', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        .kalam-regular {
+        font-family: "Kalam", cursive;
+        font-weight: 400;
+        font-style: normal;
+        }
+
+        .kalam-bold {
+        font-family: "Kalam", cursive;
+        font-weight: 700;
+        font-style: normal;
+        }
+        
+        .caveat {
+        font-family: "Caveat", cursive;
+        font-optical-sizing: auto;
+        font-weight: 400;
+        font-style: normal;
+}
+
+        /* --- CSS RESET & BASE STYLES --- */
+        * {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
-            background-color: #222;
-            /* CHANGE THIS: Local Background Image */
-            background-image: url('images/background.jpg'); 
-            background-size: cover;
+        }
+
+        body, html {
+            height: 100%;
+            font-family: 'Montserrat', sans-serif;
+            color: white;
+            overflow-x: hidden;
+        }
+
+        /* --- PARALLAX BACKGROUND --- */
+        /* IMPORTANT: Replace 'cover.jpg' with the path to your actual image.
+           The parallax effect is created by background-attachment: fixed.
+        */
+        .parallax-bg {
+            background-image: url('assets/timibina/TimiBina-Artwork.png'); /* REPLACE THIS IMAGE PATH */
+            height: 100%;
+            width: 100%;
+            background-attachment: fixed;
             background-position: center;
-            height: 100vh;
+            background-repeat: no-repeat;
+            background-size: cover;
+            position: fixed;
+            z-index: -2;
+            top: 0;
+            left: 0;
+        }
+
+        /* Adds a dark overlay so text is readable against the background */
+        .parallax-overlay {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0, 0, 0, 0.65); /* Adjust opacity (0.65) to make it darker/lighter */
+            z-index: -1;
+            backdrop-filter: blur(8px); /* Optional: adds a frosted glass blur effect */
+        }
+
+        /* --- MAIN CONTENT CONTAINER --- */
+        .container {
+            max-width: 480px;
+            margin: 40px auto;
+            padding: 30px 20px;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* --- TYPOGRAPHY --- */
+        h1.artist-name {
+            font-weight: 400;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 5px;
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        h2.song-title {
+            font-weight: 800;
+            font-size: 2.2rem;
+            margin-bottom: 25px;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+        }
+
+        /* --- COVER IMAGE --- */
+        .cover-image {
+            width: 100%;
+            /* aspect-ratio forces the container to be square */
+            aspect-ratio: 1 / 1; 
+            border-radius: 12px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+            margin-bottom: 30px;
+            overflow: hidden;
+        }
+
+        .cover-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* --- AUDIO PLAYER styling style --- */
+        .audio-wrapper {
+            margin-bottom: 30px;
+            width: 100%;
+        }
+        
+        audio {
+            width: 100%;
+            height: 40px;
+            border-radius: 20px;
+            outline: none;
+        }
+        /* Customizing audio player colors for webkit browsers */
+        audio::-webkit-media-controls-panel { background-color: #f2f2f2; }
+        audio::-webkit-media-controls-enclosure { border-radius: 20px; }
+
+
+        /* --- LINK BUTTONS --- */
+        .links-section {
+            display: flex;
+            flex-direction: column;
+            gap: 12px; /* Space between buttons */
+            width: 100%;
+        }
+
+        .btn {
             display: flex;
             align-items: center;
             justify-content: center;
-        }
-
-        /* --- CONTAINER & MODAL --- */
-        .hnsignup__wrapper {
-            background: white;
-            width: 100%;
-            max-width: 500px;
-            border-radius: 8px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
-            overflow: hidden;
+            padding: 14px 20px;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: transform 0.2s ease, background-color 0.2s;
             position: relative;
         }
 
-        .hnsignup__header {
-            background: #f4f4f4;
-            padding: 20px;
-            text-align: center;
-            border-bottom: 1px solid #ddd;
+        .btn:hover {
+            transform: scale(1.02);
         }
 
-        .local-logo {
-            max-height: 50px;
-            width: auto;
+        .btn i {
+            font-size: 1.3rem;
+            position: absolute;
+            left: 20px;
         }
 
-        /* --- FORM STEPS --- */
-        fieldset {
-            border: none;
-            padding: 0;
-            margin: 0;
-        }
-
-        .hnsignup__panel {
-            padding: 30px;
-            display: none; /* Hidden by default */
-            animation: fadeIn 0.3s ease-in-out;
-        }
-
-        .hnsignup__panel.active {
-            display: block; /* Show active panel */
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .hnsignup__legend {
-            font-size: 1.5rem;
-            color: var(--primary-color);
-            margin-bottom: 15px;
-            font-weight: bold;
-            display: block;
-        }
-
-        .hnsignup__instructions {
-            color: #666;
-            font-size: 0.95rem;
-            margin-bottom: 20px;
-            line-height: 1.4;
-        }
-
-        /* --- INPUTS --- */
-        .hnsignup__formlabel {
-            font-weight: bold;
-            font-size: 0.9rem;
-            display: block;
-            margin-bottom: 5px;
-            margin-top: 10px;
-        }
-
-        .hnsignup__forminput {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            box-sizing: border-box; /* Fix padding issues */
-            font-size: 1rem;
-        }
-
-        .hnsignup__subdomcombowrapper {
-            display: flex;
-            align-items: center;
-        }
-        
-        .hnsignup__subdomtld {
-            padding-left: 10px;
-            color: #777;
-            font-weight: bold;
-        }
-
-        /* --- PLAN SELECTION --- */
-        .hnsignup__pay-plan-list {
-            list-style: none;
-            padding: 0;
-        }
-
-        .hnsignup__pay-plan-item {
+        /* Main YouTube Button Styling */
+        .btn-main-youtube {
+            background-color: #FF0000;
+            color: white;
+            font-size: 1.1rem;
             margin-bottom: 10px;
+            box-shadow: 0 4px 15px rgba(255, 0, 0, 0.4);
         }
+        .btn-main-youtube:hover { background-color: #cc0000; }
 
-        .hnsignup__pricebox {
-            display: flex;
-            align-items: center;
-            border: 1px solid #ddd;
-            padding: 15px;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-
-        .hnsignup__pricebox:hover {
-            border-color: var(--accent-color);
-            background: #f9fff9;
-        }
-
-        .hnsignup__pricebox input[type="radio"] {
-            margin-right: 15px;
-        }
-
-        .hnsignup__plan-price {
-            margin-left: auto;
-            font-weight: bold;
-            color: var(--accent-color);
-        }
-
-        /* --- BUTTONS --- */
-        .hnsignup__buttonholder {
-            margin-top: 25px;
-            display: flex;
-            justify-content: space-between;
-        }
-
-        .hnsignup__navbutton {
-            padding: 10px 20px;
-            border: none;
-            border-radius: 4px;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: background 0.2s;
-        }
-
-        .hnsignup__navbutton--prev {
-            background-color: #ddd;
+        /* Standard Service Button Styling */
+        .btn-service {
+            background-color: rgba(255, 255, 255, 0.95);
             color: #333;
+            border: 1px solid rgba(0,0,0,0.1);
         }
+        /* Brand Specific Hover Colors (Optional - remove if you want uniform hover) */
+        .spotify-color:hover { color: #1DB954; }
+        .apple-color:hover { color: #FA243C; }
+        .amazon-color:hover { color: #FF9900; }
+        .deezer-color:hover { color: #FEAA2D; }
+        .tidal-color:hover { color: #000; }
+        .soundcloud-color:hover { color: #ff5500; }
 
-        .hnsignup__navbutton--next, .hnsignup__navbutton--submit {
-            background-color: var(--accent-color);
-            color: white;
-        }
-
-        .hnsignup__navbutton--next:hover {
-            background-color: #219150;
-        }
-
-        /* --- FOOTER --- */
         footer {
-            position: fixed;
-            bottom: 10px;
-            width: 100%;
-            text-align: center;
-            color: white;
+            margin-top: 40px;
             font-size: 0.8rem;
-            text-shadow: 1px 1px 2px black;
+            opacity: 0.6;
         }
-        
-        footer a { color: #ddd; text-decoration: none; }
 
-        /* --- HELPER --- */
-        .row { display: flex; gap: 10px; }
-        .col { flex: 1; }
+        /* Responsive adjustments for smaller phones */
+        @media (max-width: 400px) {
+            h2.song-title { font-size: 1.8rem; }
+            .btn { padding: 12px 15px; font-size: 0.9rem; }
+            .btn i { left: 15px; font-size: 1.1rem; }
+        }
     </style>
 </head>
-
 <body>
 
-    <div class="hnsignup__wrapper">
-        <div class="hnsignup__header">
-            <img src="images/logo.png" alt="Local Logo" class="local-logo" onerror="this.style.display='none'; document.getElementById('logo-text').style.display='block'">
-            <h2 id="logo-text" style="display:none; margin:0;">Music Promo Page</h2>
+    <div class="parallax-bg"></div>
+    <div class="parallax-overlay"></div>
+
+    <div class="container">
+        
+        <header>
+            <h1 class="artist-name ">Chrisma Abigail</h1>
+            <!--<h2 class="song-title caveat">Timi Bina <span class="kalam-light">(तिमी बिना)</span></h2>
+        --><h2 class="song-title kalam-light">तिमी बिना <span class="caveat">(Timi Bina)</span></h2>
+        
+        </header>
+
+        <div class="cover-image">
+            <img src="assets/timibina/TimiBina-Artwork.png" alt="Timi Bina Cover Art">
         </div>
 
-        <form id="signup_form" onsubmit="return false;">
+        <h2 class="song-title caveat">December 21st, 2025 <br>
+            <span id="days-display"></span>
+        </h2>
+
+        <div class="audio-wrapper">
+             <audio controls controlsList="nodownload">
+                <source src="assets/timibina/TimiBina-Sample.wav" type="audio/wav">
+                Your browser does not support the audio element.
+            </audio>
+        </div>
+
+        <div class="links-section">
+            <a href="https://www.youtube.com/@ChrismaAbigail" id="youtube-link" class="btn btn-main-youtube" target="_blank">
+                <i class="fab fa-youtube"></i>
+                Subscribe YouTube
+            </a>
+
+            <a href="https://show.co/IBd6scY" class="btn btn-service spotify-color" target="_blank">
+                <i class="fab fa-spotify"></i> Pre-save on Spotify
+            </a>
+            <!--
+            <a href="#" class="btn btn-service apple-color" target="_blank">
+                 <i class="fab fa-apple"></i> Pre-add on Apple Music
+            </a>
+             
+             <a href="#" class="btn btn-service amazon-color" target="_blank">
+                <i class="fab fa-amazon"></i> Pre-save on Amazon Music
+            </a>
+
+            <a href="#" class="btn btn-service deezer-color" target="_blank">
+                <i class="fab fa-deezer"></i> Pre-save on Deezer
+            </a>
             
-            <fieldset class="hnsignup__panel active" id="step-1">
-                <legend class="hnsignup__legend">Create your Account</legend>
-                <div class="hnsignup__panel-content">
-                    <p class="hnsignup__instructions">Enter your email address and choose a password.</p>
-                    
-                    <label class="hnsignup__formlabel" for="email">Your email address</label>
-                    <input id="email" placeholder="you@example.com" class="hnsignup__forminput" type="email">
-                    
-                    <label class="hnsignup__formlabel" for="pass">Choose a password</label>
-                    <input placeholder="Password" id="pass" class="hnsignup__forminput" type="password">
-                    
-                    <label class="hnsignup__formlabel" for="pass2">Confirm password</label>
-                    <input placeholder="Re-type Password" id="pass2" class="hnsignup__forminput" type="password">
-                </div>
-                <div class="hnsignup__buttonholder">
-                    <button class="hnsignup__navbutton hnsignup__navbutton--prev" disabled style="opacity:0.5">Cancel</button>
-                    <button class="hnsignup__navbutton hnsignup__navbutton--next" onclick="nextStep(2)">Create account</button>
-                </div>
-            </fieldset>
+            <a href="#" class="btn btn-service tidal-color" target="_blank">
+                 <span style="position: absolute; left: 20px; font-weight: 900; font-size: 1.1rem;">T</span> Pre-save on Tidal
+            </a>
 
-            <fieldset class="hnsignup__panel" id="step-2">
-                <legend class="hnsignup__legend">Choose your URL</legend>
-                <div class="hnsignup__panel-content">
-                    <p class="hnsignup__instructions">Your artist or band name is the best bet.</p>
-                    
-                    <label class="hnsignup__formlabel">Site Name</label>
-                    <div class="hnsignup__subdomcombowrapper">
-                        <input id="subdomain" placeholder="artistname" class="hnsignup__forminput" type="text">
-                        <div class="hnsignup__subdomtld">.yoursite.com</div>
-                    </div>
-                </div>
-                <div class="hnsignup__buttonholder">
-                    <button class="hnsignup__navbutton hnsignup__navbutton--prev" onclick="nextStep(1)">Previous</button>
-                    <button class="hnsignup__navbutton hnsignup__navbutton--next" onclick="nextStep(3)">Next</button>
-                </div>
-            </fieldset>
+            <a href="#" class="btn btn-service soundcloud-color" target="_blank">
+                <i class="fab fa-soundcloud"></i> Pre-save on SoundCloud
+            </a>
+        </div>
+        -->
+        <footer>
+            <p>© 2025 Chrisma Abigail</p>
+        </footer>
 
-            <fieldset class="hnsignup__panel" id="step-3">
-                <legend class="hnsignup__legend">Choose a Plan</legend>
-                <div class="hnsignup__panel-content">
-                    <ul class="hnsignup__pay-plan-list">
-                        <li class="hnsignup__pay-plan-item">
-                            <label class="hnsignup__pricebox">
-                                <input type="radio" name="plan" checked>
-                                <span class="hnsignup__plan-name">Monthly Subscription</span>
-                                <span class="hnsignup__plan-price">$2.95/mo</span>
-                            </label>
-                        </li>
-                        <li class="hnsignup__pay-plan-item">
-                            <label class="hnsignup__pricebox">
-                                <input type="radio" name="plan">
-                                <span class="hnsignup__plan-name">Yearly Subscription</span>
-                                <span class="hnsignup__plan-price">$24/yr</span>
-                            </label>
-                        </li>
-                    </ul>
-                </div>
-                <div class="hnsignup__buttonholder">
-                    <button class="hnsignup__navbutton hnsignup__navbutton--prev" onclick="nextStep(2)">Previous</button>
-                    <button class="hnsignup__navbutton hnsignup__navbutton--next" onclick="nextStep(4)">Next</button>
-                </div>
-            </fieldset>
-
-            <fieldset class="hnsignup__panel" id="step-4">
-                <legend class="hnsignup__legend">Checkout</legend>
-                <div class="hnsignup__panel-content">
-                    <p class="hnsignup__instructions">Enter payment details (This is a local demo, no charge will be made).</p>
-                    
-                    <div class="row">
-                        <div class="col">
-                            <label class="hnsignup__formlabel">First Name</label>
-                            <input class="hnsignup__forminput" type="text">
-                        </div>
-                        <div class="col">
-                            <label class="hnsignup__formlabel">Last Name</label>
-                            <input class="hnsignup__forminput" type="text">
-                        </div>
-                    </div>
-
-                    <label class="hnsignup__formlabel">Card Number</label>
-                    <input class="hnsignup__forminput" type="text" placeholder="0000 0000 0000 0000">
-
-                    <div class="row">
-                        <div class="col">
-                            <label class="hnsignup__formlabel">Exp Date</label>
-                            <input class="hnsignup__forminput" type="text" placeholder="MM/YY">
-                        </div>
-                        <div class="col">
-                            <label class="hnsignup__formlabel">CVV</label>
-                            <input class="hnsignup__forminput" type="text" placeholder="123">
-                        </div>
-                         <div class="col">
-                            <label class="hnsignup__formlabel">Zip</label>
-                            <input class="hnsignup__forminput" type="text" placeholder="Zip">
-                        </div>
-                    </div>
-                </div>
-                <div class="hnsignup__buttonholder">
-                    <button class="hnsignup__navbutton hnsignup__navbutton--prev" onclick="nextStep(3)">Previous</button>
-                    <button class="hnsignup__navbutton hnsignup__navbutton--submit" onclick="alert('Demo Complete!')">Create my site!</button>
-                </div>
-            </fieldset>
-
-        </form>
     </div>
 
-    <footer>
-        <p>Local Template Preview &copy; 2025</p>
-    </footer>
-
-    <script>
-        function nextStep(stepNumber) {
-            // Hide all steps
-            const panels = document.querySelectorAll('.hnsignup__panel');
-            panels.forEach(panel => panel.classList.remove('active'));
-
-            // Show requested step
-            const target = document.getElementById('step-' + stepNumber);
-            if(target) {
-                target.classList.add('active');
-            }
-        }
-    </script>
-
 </body>
+<script>
+        // 1. Set the date we are counting down to
+        const targetDate = new Date("December 21, 2025 00:00:00").getTime();
+
+        // Get today's date and time
+        const now = new Date().getTime();
+
+        // Find the distance between now and the count down date
+        const distance = targetDate - now;
+
+        // Time calculations for days
+        // (1000ms * 60s * 60m * 24h)
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+
+        // Display the result in the element with id="days-display"
+        if (days >= 1) {
+            document.getElementById("days-display").innerText = days + " days to go";
+        }
+        else if (days === 1) {
+            document.getElementById("days-display").innerText = "out tomorrow!";
+        }
+        else {
+            document.getElementById("days-display").innerText = "out now!";
+            document.getElementById("youtube-link").innerText = "Watch on YouTube";
+            clearInterval(x); // Stop the countdown
+        }
+        
+        
+    </script>
 </html>
