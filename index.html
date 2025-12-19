@@ -12,6 +12,20 @@
     <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Kalam:wght@300;400;700&display=swap" rel="stylesheet">
 
     <style>
+
+        @font-face {
+        font-family: 'ThickBrush';
+        src: url('assets/timibina/ThickBrush.otf') format('opentype');
+        font-weight: normal;
+        font-style: normal;
+        }
+
+        .thickbrush {
+            font-family: 'ThickBrush', 'Courier New', Courier, monospace;
+            font-weight: normal;
+            font-style: normal;
+        }
+
         .kalam-light {
         font-family: "Kalam", cursive;
         font-weight: 300;
@@ -290,13 +304,13 @@
 
         // Display the result in the element with id="days-display"
         if (days >= 1) {
-            document.getElementById("days-display").innerText = days + " days to go";
+            document.getElementById("days-display").innerText = days + " day to go";
         }
         else if (days === 1) {
-            document.getElementById("days-display").innerText = "out tomorrow!";
+            document.getElementById("days-display").innerText = "Coming tomorrow!";
         }
         else {
-            document.getElementById("days-display").innerText = "out now!";
+            document.getElementById("days-display").innerText = "";
             document.getElementById("youtube-link").innerText = "Watch on YouTube";
             clearInterval(x); // Stop the countdown
         }
