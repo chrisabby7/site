@@ -239,10 +239,6 @@
             <img src="assets/timibina/TimiBina-Artwork.png" alt="Timi Bina Cover Art">
         </div>
 
-        <h2 class="song-title caveat">December 21st, 2025 <br>
-            <span id="days-display"></span>
-        </h2>
-
         <div class="audio-wrapper">
              <audio controls controlsList="nodownload">
                 <source src="assets/timibina/TimiBina-Sample.wav" type="audio/wav">
@@ -256,18 +252,18 @@
                 Watch on YouTube
             </a>
 
-            <a href="https://show.co/IBd6scY" class="btn btn-service spotify-color" target="_blank">
-                <i class="fab fa-spotify"></i> Pre-save on Spotify
+            <a href="https://open.spotify.com/track/14GjgIlAA7fE5UDNISePOJ?si=7b14df4430154d69" class="btn btn-service spotify-color" target="_blank">
+                <i class="fab fa-spotify"></i> Listen on Spotify
             </a>
-            <!--
-            <a href="#" class="btn btn-service apple-color" target="_blank">
-                 <i class="fab fa-apple"></i> Pre-add on Apple Music
+            
+            <a href="https://music.apple.com/us/album/timi-bina-single/1856425279" class="btn btn-service apple-color" target="_blank">
+                 <i class="fab fa-apple"></i> Listen on Apple Music
             </a>
              
-             <a href="#" class="btn btn-service amazon-color" target="_blank">
-                <i class="fab fa-amazon"></i> Pre-save on Amazon Music
+             <a href="https://amazon.com/music/player/albums/B0G46DMDH8?marketplaceId=ATVPDKIKX0DER&musicTerritory=US&ref=dm_sh_VXvvYZEpwaj7mQmOiXtfMYJZx&trackAsin=B0G468VRJN" class="btn btn-service amazon-color" target="_blank">
+                <i class="fab fa-amazon"></i> Listen on Amazon Music
             </a>
-
+            <!--
             <a href="#" class="btn btn-service deezer-color" target="_blank">
                 <i class="fab fa-deezer"></i> Pre-save on Deezer
             </a>
@@ -288,33 +284,4 @@
     </div>
 
 </body>
-<script>
-        // 1. Set the date we are counting down to
-        const targetDate = new Date("December 21, 2025 00:00:00").getTime();
-
-        // Get today's date and time
-        const now = new Date().getTime();
-
-        // Find the distance between now and the count down date
-        const distance = targetDate - now;
-
-        // Time calculations for days
-        // (1000ms * 60s * 60m * 24h)
-        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-
-        // Display the result in the element with id="days-display"
-        if (days >= 1) {
-            document.getElementById("days-display").innerText = days + " day to go";
-        }
-        else if (days === 1) {
-            document.getElementById("days-display").innerText = "Coming tomorrow!";
-        }
-        else {
-            document.getElementById("days-display").innerText = "";
-            document.getElementById("youtube-link").innerText = "Watch on YouTube";
-            clearInterval(x); // Stop the countdown
-        }
-        
-        
-    </script>
 </html>
