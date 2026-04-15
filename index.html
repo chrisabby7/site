@@ -3,285 +3,136 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Timi Bina by Chrisma Abigail</title>
-    
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&display=swap" rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Kalam:wght@300;400;700&display=swap" rel="stylesheet">
-
+    <title>Phool Jastai | Chrisma Abigail</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
-
-        @font-face {
-        font-family: 'ThickBrush';
-        src: url('assets/timibina/ThickBrush.otf') format('opentype');
-        font-weight: normal;
-        font-style: normal;
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #fdfaf7; /* Creamy off-white */
         }
-
-        .thickbrush {
-            font-family: 'ThickBrush', 'Courier New', Courier, monospace;
-            font-weight: normal;
-            font-style: normal;
+        h1, h2 {
+            font-family: 'Playfair Display', serif;
         }
-
-        .kalam-light {
-        font-family: "Kalam", cursive;
-        font-weight: 300;
-        font-style: normal;
-        }
-
-        .kalam-regular {
-        font-family: "Kalam", cursive;
-        font-weight: 400;
-        font-style: normal;
-        }
-
-        .kalam-bold {
-        font-family: "Kalam", cursive;
-        font-weight: 700;
-        font-style: normal;
-        }
-        
-        .caveat {
-        font-family: "Caveat", cursive;
-        font-optical-sizing: auto;
-        font-weight: 400;
-        font-style: normal;
-}
-
-        /* --- CSS RESET & BASE STYLES --- */
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        body, html {
-            height: 100%;
-            font-family: 'Montserrat', sans-serif;
-            color: white;
-            overflow-x: hidden;
-        }
-
-        /* --- PARALLAX BACKGROUND --- */
-        /* IMPORTANT: Replace 'cover.jpg' with the path to your actual image.
-           The parallax effect is created by background-attachment: fixed.
-        */
-        .parallax-bg {
-            background-image: url('assets/timibina/TimiBina-Artwork.png'); /* REPLACE THIS IMAGE PATH */
-            height: 100%;
-            width: 100%;
-            background-attachment: fixed;
-            background-position: center;
-            background-repeat: no-repeat;
+        .hero-gradient {
+            background: linear-gradient(rgba(253, 250, 247, 0.7), rgba(253, 250, 247, 0.7)), 
+                        url('assets/phooljastai/Release.png') no-repeat;
             background-size: cover;
-            position: fixed;
-            z-index: -2;
-            top: 0;
-            left: 0;
+            background-position: center;
         }
-
-        /* Adds a dark overlay so text is readable against the background */
-        .parallax-overlay {
-            position: fixed;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: rgba(0, 0, 0, 0.65); /* Adjust opacity (0.65) to make it darker/lighter */
-            z-index: -1;
-            backdrop-filter: blur(8px); /* Optional: adds a frosted glass blur effect */
+        .cta-button {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
-
-        /* --- MAIN CONTENT CONTAINER --- */
-        .container {
-            max-width: 480px;
-            margin: 40px auto;
-            padding: 30px 20px;
-            text-align: center;
-            position: relative;
-            z-index: 1;
-        }
-
-        /* --- TYPOGRAPHY --- */
-        h1.artist-name {
-            font-weight: 400;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            margin-bottom: 5px;
-            font-size: 1.2rem;
-            opacity: 0.9;
-        }
-
-        h2.song-title {
-            font-weight: 800;
-            font-size: 2.2rem;
-            margin-bottom: 25px;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
-        }
-
-        /* --- COVER IMAGE --- */
-        .cover-image {
-            width: 100%;
-            /* aspect-ratio forces the container to be square */
-            aspect-ratio: 1 / 1; 
-            border-radius: 12px;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.5);
-            margin-bottom: 30px;
-            overflow: hidden;
-        }
-
-        .cover-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        /* --- AUDIO PLAYER styling style --- */
-        .audio-wrapper {
-            margin-bottom: 30px;
-            width: 100%;
-        }
-        
-        audio {
-            width: 100%;
-            height: 40px;
-            border-radius: 20px;
-            outline: none;
-        }
-        /* Customizing audio player colors for webkit browsers */
-        audio::-webkit-media-controls-panel { background-color: #f2f2f2; }
-        audio::-webkit-media-controls-enclosure { border-radius: 20px; }
-
-
-        /* --- LINK BUTTONS --- */
-        .links-section {
-            display: flex;
-            flex-direction: column;
-            gap: 12px; /* Space between buttons */
-            width: 100%;
-        }
-
-        .btn {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 14px 20px;
-            text-decoration: none;
-            border-radius: 50px;
-            font-weight: 600;
-            transition: transform 0.2s ease, background-color 0.2s;
-            position: relative;
-        }
-
-        .btn:hover {
-            transform: scale(1.02);
-        }
-
-        .btn i {
-            font-size: 1.3rem;
-            position: absolute;
-            left: 20px;
-        }
-
-        /* Main YouTube Button Styling */
-        .btn-main-youtube {
-            background-color: #FF0000;
-            color: white;
-            font-size: 1.1rem;
-            margin-bottom: 10px;
-            box-shadow: 0 4px 15px rgba(255, 0, 0, 0.4);
-        }
-        .btn-main-youtube:hover { background-color: #cc0000; }
-
-        /* Standard Service Button Styling */
-        .btn-service {
-            background-color: rgba(255, 255, 255, 0.95);
-            color: #333;
-            border: 1px solid rgba(0,0,0,0.1);
-        }
-        /* Brand Specific Hover Colors (Optional - remove if you want uniform hover) */
-        .spotify-color:hover { color: #1DB954; }
-        .apple-color:hover { color: #FA243C; }
-        .amazon-color:hover { color: #FF9900; }
-        .deezer-color:hover { color: #FEAA2D; }
-        .tidal-color:hover { color: #000; }
-        .soundcloud-color:hover { color: #ff5500; }
-
-        footer {
-            margin-top: 40px;
-            font-size: 0.8rem;
-            opacity: 0.6;
-        }
-
-        /* Responsive adjustments for smaller phones */
-        @media (max-width: 400px) {
-            h2.song-title { font-size: 1.8rem; }
-            .btn { padding: 12px 15px; font-size: 0.9rem; }
-            .btn i { left: 15px; font-size: 1.1rem; }
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px -5px rgba(219, 153, 153, 0.4);
         }
     </style>
 </head>
-<body>
-
-    <div class="parallax-bg"></div>
-    <div class="parallax-overlay"></div>
-
-    <div class="container">
-        
-        <header>
-            <h1 class="artist-name ">Chrisma Abigail</h1>
-            <!--<h2 class="song-title caveat">Timi Bina <span class="kalam-light">(तिमी बिना)</span></h2>
-        --><h2 class="song-title kalam-light">तिमी बिना <span class="caveat">(Timi Bina)</span></h2>
-        
-        </header>
-
-        <div class="cover-image">
-            <img src="assets/timibina/TimiBina-Artwork.png" alt="Timi Bina Cover Art">
-        </div>
-
-        <div class="audio-wrapper">
-             <audio controls controlsList="nodownload">
-                <source src="assets/timibina/TimiBina-Sample.wav" type="audio/wav">
-                Your browser does not support the audio element.
-            </audio>
-        </div>
-
-        <div class="links-section">
-            <a href="https://www.youtube.com/watch?v=9qkcTCVK0X0" id="youtube-link" class="btn btn-main-youtube" target="_blank">
-                <i class="fab fa-youtube"></i>
-                Watch on YouTube
-            </a>
-
-            <a href="https://open.spotify.com/track/14GjgIlAA7fE5UDNISePOJ?si=7b14df4430154d69" class="btn btn-service spotify-color" target="_blank">
-                <i class="fab fa-spotify"></i> Listen on Spotify
-            </a>
+<body class="text-stone-800 antialiased">
+    <header class="relative min-h-screen flex items-center justify-center hero-gradient px-4">
+        <div class="max-w-3xl text-center">
+            <span class="uppercase tracking-[0.3em] text-sm mb-6 block text-stone-500 font-semibold">The New Single</span>
+            <h1 class="text-6xl md:text-8xl mb-4 text-stone-900">Phool Jastai</h1>
+            <p class="text-xl md:text-2xl italic text-stone-600 mb-12 font-light">
+                A waltz of love and the arrival of Spring.
+            </p>
             
-            <a href="https://music.apple.com/us/album/timi-bina-single/1856425279" class="btn btn-service apple-color" target="_blank">
-                 <i class="fab fa-apple"></i> Listen on Apple Music
-            </a>
-             
-             <a href="https://amazon.com/music/player/albums/B0G46DMDH8?marketplaceId=ATVPDKIKX0DER&musicTerritory=US&ref=dm_sh_VXvvYZEpwaj7mQmOiXtfMYJZx&trackAsin=B0G468VRJN" class="btn btn-service amazon-color" target="_blank">
-                <i class="fab fa-amazon"></i> Listen on Amazon Music
-            </a>
-            <!--
-            <a href="#" class="btn btn-service deezer-color" target="_blank">
-                <i class="fab fa-deezer"></i> Pre-save on Deezer
-            </a>
-            
-            <a href="#" class="btn btn-service tidal-color" target="_blank">
-                 <span style="position: absolute; left: 20px; font-weight: 900; font-size: 1.1rem;">T</span> Pre-save on Tidal
-            </a>
-
-            <a href="#" class="btn btn-service soundcloud-color" target="_blank">
-                <i class="fab fa-soundcloud"></i> Pre-save on SoundCloud
-            </a>
+            <div class="flex flex-col items-center gap-6">
+                <a href="https://artists.landr.com/991043434962" target="_blank" 
+                   class="cta-button text-white px-10 py-5 rounded-full text-lg font-semibold tracking-wide uppercase" style="background: rgba(230, 170, 22, 1);">
+                    Pre-Save Music
+                </a>
+                <p class="text-sm text-grey-400 font-bold">Releasing on April 23rd</p>
+            </div>
         </div>
-        -->
-        <footer>
-            <p>© 2025 Chrisma Abigail</p>
-        </footer>
+    </header>
 
-    </div>
+    <section class="py-24 px-4 bg-white">
+        <div class="max-w-2xl mx-auto text-center">
+            <h2 class="text-3xl md:text-4xl mb-8">Chrisma Abigail</h2>
+            <p class="text-lg leading-relaxed text-stone-600 mb-6">
+                Hey there! I'm Chrisma, and I'm so happy you've stopped by.
+
+I'm an aspiring Nepali singer-songwriter based in Virginia. Singing has always been an integral part of my life—it’s given me a sense of belonging, purpose, friendships, and connections. Now, at 27, I’m finally ready to share my own songs with the world, a dream I’ve held very close to my heart for a really long time.</p>
+            <p class="text-lg leading-relaxed text-stone-600">
+                So, I invite you to join me as I begin this new journey. The songs I’ll be sharing come straight from the archives of my heart, and I hope the feelings and stories I’ve poured into them resonate with your own.
+                <br>
+                Much love, and thank you! ❤️
+            </p>
+            <hr class="mt-5">
+
+        </div>
+    </section>
+    
+    <section class="py-24 px-4 bg-white border-t border-stone-100">
+        <div class="max-w-5xl mx-auto">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-12">
+                <div>
+                    <span class="uppercase tracking-[0.2em] text-xs text-stone-400 font-bold mb-2 block">Discography</span>
+                    <h2 class="text-4xl">Previous Releases</h2>
+                </div>
+                <p class="text-stone-500 max-w-xs mt-4 md:mt-0 italic font-light">
+                    Explore the evolution of Chrisma's sound through her latest singles.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                
+                <div class="group cursor-pointer">
+                    <div class="relative aspect-square overflow-hidden rounded-lg bg-stone-100 mb-6">
+                        <img src="assets/agadi/Agadi-Spotify2.png" 
+                             alt="Agadi Album Cover" 
+                             class="object-cover w-full h-full transition-transform duration-700 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300 flex items-center justify-center">
+                            <a href="https://artists.landr.com/057914698205" class="opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-white text-stone-900 px-6 py-2 rounded-full text-sm font-semibold uppercase tracking-wider">
+                                View Page
+                            </a>
+                        </div>
+                    </div>
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <h3 class="text-2xl mb-1">Agadi</h3>
+                            <p class="text-stone-400 text-sm tracking-widest uppercase">Soul / R&B</p>
+                        </div>
+                        <a href="https://open.spotify.com/track/1kHabIOdBRkecfbPzkuHyV?si=9473ae0de3224af7" target="_blank" class="text-stone-300 hover:text-[#db9999] transition-colors">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.494 17.306c-.217.356-.679.468-1.034.252-2.859-1.747-6.458-2.141-10.701-1.171-.408.093-.815-.164-.908-.572-.093-.408.164-.815.572-.908 4.636-1.06 8.608-.616 11.819 1.347.356.216.468.678.252 1.034zm1.467-3.259c-.273.444-.852.585-1.296.312-3.272-2.011-8.259-2.593-12.127-1.417-.501.152-1.026-.134-1.178-.635-.152-.501.134-1.026.635-1.178 4.417-1.341 9.914-.689 13.654 1.612.444.273.585.852.312 1.296zm.127-3.414C15.176 8.358 8.718 8.144 4.966 9.283c-.604.183-1.242-.164-1.425-.768-.183-.604.164-1.242.768-1.425 4.314-1.31 11.447-1.059 16.035 1.661.543.322.721 1.024.399 1.567-.322.544-1.024.722-1.567.399z"/></svg>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="group cursor-pointer">
+                    <div class="relative aspect-square overflow-hidden rounded-lg bg-stone-100 mb-6">
+                        <img src="assets/timibina/TimiBina-Artwork.png" 
+                             alt="Timi Bina Album Cover" 
+                             class="object-cover w-full h-full transition-transform duration-700 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300 flex items-center justify-center">
+                            <a href="timibina.html" class="opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-white text-stone-900 px-6 py-2 rounded-full text-sm font-semibold uppercase tracking-wider">
+                                View Page
+                            </a>
+                        </div>
+                    </div>
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <h3 class="text-2xl mb-1">Timi Bina</h3>
+                            <p class="text-stone-400 text-sm tracking-widest uppercase">Pop / Ballad</p>
+                        </div>
+                        <a href="https://open.spotify.com/track/14GjgIlAA7fE5UDNISePOJ?si=f654a93a011d42b0" target="_blank" class="text-stone-300 hover:text-[#db9999] transition-colors">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.494 17.306c-.217.356-.679.468-1.034.252-2.859-1.747-6.458-2.141-10.701-1.171-.408.093-.815-.164-.908-.572-.093-.408.164-.815.572-.908 4.636-1.06 8.608-.616 11.819 1.347.356.216.468.678.252 1.034zm1.467-3.259c-.273.444-.852.585-1.296.312-3.272-2.011-8.259-2.593-12.127-1.417-.501.152-1.026-.134-1.178-.635-.152-.501.134-1.026.635-1.178 4.417-1.341 9.914-.689 13.654 1.612.444.273.585.852.312 1.296zm.127-3.414C15.176 8.358 8.718 8.144 4.966 9.283c-.604.183-1.242-.164-1.425-.768-.183-.604.164-1.242.768-1.425 4.314-1.31 11.447-1.059 16.035 1.661.543.322.721 1.024.399 1.567-.322.544-1.024.722-1.567.399z"/></svg>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+    <footer class="py-12 border-t border-stone-100 text-center">
+        <p class="text-xs uppercase tracking-widest text-stone-400">
+            &copy; 2026 Chrisma Abigail. All rights reserved.
+        </p>
+    </footer>
 
 </body>
 </html>
